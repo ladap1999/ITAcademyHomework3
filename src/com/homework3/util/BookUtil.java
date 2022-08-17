@@ -6,37 +6,27 @@ import com.homework3.basic.BookField;
 
 import java.util.*;
 
-public class DataUtil {
+public class BookUtil {
     public static Book[] generateArray(int amountOfBooks) {
-        Book[] bookArray = new Book[amountOfBooks];
         String[] nameOfBooks = new String[]{"Hamlet", "A time to kill", "The sun also rises", "In cold blood", "The dark tower", "ABSALOM, ABSALOM!"};
         String[] authorName = new String[]{"Tomas", "Aleksandr", "Sergey", "Gugo", "James", "Robert"};
         String[] authorSurname = new String[]{"King", "Pyshkin", "Reeve", "Green", "Tolstoy", "Nabokov"};
         String[] authorSecondName = new String[]{"Viktorovich", "Petrov", "Alekseevich", "Yanovich", "Maksimovich", "Nikitovich"};
         int[] yearOfCreation = new int[]{1979, 1812, 1768, 1944, 1895, 1989};
-
+        Book[] bookArray = new Book[amountOfBooks];
         Random random = new Random();
-        int numberOfRandomName;
-        int numberOfRandomAuthorName;
-        int numberOfRandomAuthorSurname;
-        int numberOfRandomAuthorSecondName;
-        int numberOfRandomYearOfCreation;
 
         for (int i = 0; i < amountOfBooks; i++) {
-            if (i <= 6 && amountOfBooks >= 6) {
-                numberOfRandomName = 3;
-                numberOfRandomAuthorName = 3;
-                numberOfRandomAuthorSurname = 3;
-                numberOfRandomAuthorSecondName = 3;
-                numberOfRandomYearOfCreation = 3;
+            if (i <= 6 && amountOfBooks > 6) {
+                bookArray[i] = new Book(nameOfBooks[3], authorName[3], authorSurname[3], authorSecondName[3], yearOfCreation[3]);
             } else {
-                numberOfRandomName = random.nextInt(nameOfBooks.length);
-                numberOfRandomAuthorName = random.nextInt(nameOfBooks.length);
-                numberOfRandomAuthorSurname = random.nextInt(nameOfBooks.length);
-                numberOfRandomAuthorSecondName = random.nextInt(nameOfBooks.length);
-                numberOfRandomYearOfCreation = random.nextInt(nameOfBooks.length);
+                bookArray[i] = new Book(
+                        nameOfBooks[random.nextInt(nameOfBooks.length)],
+                        authorName[random.nextInt(nameOfBooks.length)],
+                        authorSurname[random.nextInt(nameOfBooks.length)],
+                        authorSecondName[random.nextInt(nameOfBooks.length)],
+                        yearOfCreation[random.nextInt(nameOfBooks.length)]);
             }
-            bookArray[i] = new Book(nameOfBooks[numberOfRandomName], authorName[numberOfRandomAuthorName], authorSurname[numberOfRandomAuthorSurname], authorSecondName[numberOfRandomAuthorSecondName], yearOfCreation[numberOfRandomYearOfCreation]);
         }
         return bookArray;
     }
@@ -45,7 +35,6 @@ public class DataUtil {
         Book[] resultArray = generateArray(amountOfBooks);
         LinkedList<Book> books = new LinkedList<>();
         for (Book element : resultArray) {
-
             books.add(element);
         }
         return books;
@@ -55,7 +44,6 @@ public class DataUtil {
         Book[] resultArray = generateArray(amountOfBooks);
         HashSet<Book> books = new HashSet<>();
         for (Book element : resultArray) {
-
             books.add(element);
         }
         return books;
@@ -72,7 +60,7 @@ public class DataUtil {
                     }
                 };
                 Collections.sort(allBooks, compareByAuthorName);
-                DataUtil.printCollections(allBooks);
+                BookUtil.printCollections(allBooks);
                 break;
             case BOOKAUTHORSURNAME:
                 Comparator<Book> compareByAuthorSurname = new Comparator<Book>() {
@@ -82,7 +70,7 @@ public class DataUtil {
                     }
                 };
                 Collections.sort(allBooks, compareByAuthorSurname);
-                DataUtil.printCollections(allBooks);
+                BookUtil.printCollections(allBooks);
                 break;
             case BOOKAUTHORSECONDNAME:
                 Comparator<Book> compareByAuthorSecondName = new Comparator<Book>() {
@@ -92,7 +80,7 @@ public class DataUtil {
                     }
                 };
                 Collections.sort(allBooks, compareByAuthorSecondName);
-                DataUtil.printCollections(allBooks);
+                BookUtil.printCollections(allBooks);
                 break;
         }
     }
@@ -105,7 +93,9 @@ public class DataUtil {
 
         TreeSet<Student> students = new TreeSet<>();
         for (int i = 0; i < amountOfStudent; i++) {
-            students.add(new Student(names[random.nextInt(names.length)], surnames[random.nextInt(surnames.length)], ages[random.nextInt(ages.length)]));
+            students.add(new Student(names[random.nextInt(names.length)],
+                    surnames[random.nextInt(surnames.length)],
+                    ages[random.nextInt(ages.length)]));
         }
         return students;
     }
