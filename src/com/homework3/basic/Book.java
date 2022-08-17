@@ -65,15 +65,6 @@ public class Book implements Comparator<Book>{
     public int compare(Book o1, Book o2) {
         return o1.getBookName().compareTo(o2.getBookName());
     }
-   /* public int compare1(Book o1, Book o2) {
-        return o1.getBookAuthorName().compareTo(o2.getBookAuthorName());
-    }
-    public int compare2(Book o1, Book o2) {
-        return o1.getBookAuthorSecondName().compareTo(o2.getBookAuthorSecondName());
-    }
-    public int compare3(Book o1, Book o2) {
-        return o1.getBookAuthorSurname().compareTo(o2.getBookAuthorSurname());
-    }*/
 
     @Override
     public boolean equals(Object o) {
